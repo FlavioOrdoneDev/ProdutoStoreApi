@@ -18,6 +18,11 @@ namespace ProdutoStoreApi.Dominio.Servicos
 
         public Categoria Adicionar(Categoria categoria)
         {
+            if (!categoria.IsValid())
+            {
+                return categoria;
+            }
+
             return _categoriaRepositorio.Adicionar(categoria);
         }
 
