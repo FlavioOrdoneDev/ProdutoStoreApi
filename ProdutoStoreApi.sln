@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{73AB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutoStoreApi.Dominio", "ProdutoStoreApi.Dominio\ProdutoStoreApi.Dominio.csproj", "{AC38A6D0-9E4F-4530-BA64-5C92503A3A6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutoStoreApi.Dominio.Tests", "ProdutoStoreApi.Dominio.Tests\ProdutoStoreApi.Dominio.Tests.csproj", "{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +19,17 @@ Global
 		{AC38A6D0-9E4F-4530-BA64-5C92503A3A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC38A6D0-9E4F-4530-BA64-5C92503A3A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC38A6D0-9E4F-4530-BA64-5C92503A3A6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AC38A6D0-9E4F-4530-BA64-5C92503A3A6B} = {73AB6697-C265-4B9D-B060-DE9FE59D0E96}
+		{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00} = {73AB6697-C265-4B9D-B060-DE9FE59D0E96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E5B0E29-E6AE-4C91-8680-6BE11F7919A3}
