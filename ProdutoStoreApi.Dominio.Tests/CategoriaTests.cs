@@ -150,7 +150,55 @@ namespace ProdutoStoreApi.Dominio.Tests
         #endregion
 
 
+        #region CategoriaAtivo
 
+        [TestMethod]
+        public void CategoriaAtivo_DeveAceitarCampoAtivoDaCategoriaIgualATrue()
+        {
+            var categoria = ObterCategoria("Eletrônico");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Adicionar(categoria)).Returns(categoria);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Adicionar(categoria);
+
+            Assert.IsTrue(resultado.Ativo);
+        }
+
+        [TestMethod]
+        public void CategoriaAtivo_DeveAceitarCampoAtivoDaCategoriaIgualAFalse()
+        {
+            var ativoFalse = ObterCategoria("AtivoFalse");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Adicionar(ativoFalse)).Returns(ativoFalse);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Adicionar(ativoFalse);
+
+            Assert.IsFalse(resultado.Ativo);
+        }
+
+        [TestMethod]
+        public void CategoriaAtivo_DeveAceitarCampoAtivoTrueComoDefault()
+        {
+            var ativoTrueDefault = ObterCategoria("AtivoTrueDefault");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Adicionar(ativoTrueDefault)).Returns(ativoTrueDefault);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Adicionar(ativoTrueDefault);
+
+            Assert.IsTrue(resultado.Ativo);
+        }
+
+
+        #endregion
 
 
 
@@ -173,6 +221,9 @@ namespace ProdutoStoreApi.Dominio.Tests
             var categoriaDescricaoDoisCaracteres = new Categoria("CategoriaDescricaoDoisCaracteres", "aa");
             var descricaoCategoriaMuitoGrande = new Categoria("DescricaoCategoriaMuitoGrande", "NomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteres");
 
+            var ativoFalse = new Categoria("AtivoFalse", "Categoria com campo Ativo false");
+            var ativoTrueDefault = new Categoria("AtivoTrueDefault", "Categoria com campo Ativo true por default");
+
             categorias.Add(eletronico);
             categorias.Add(nomeNulo);
             categorias.Add(categoriaDoisCaracteres);
@@ -181,6 +232,9 @@ namespace ProdutoStoreApi.Dominio.Tests
             categorias.Add(descricaoNula);
             categorias.Add(categoriaDescricaoDoisCaracteres);
             categorias.Add(descricaoCategoriaMuitoGrande);
+
+            categorias.Add(ativoFalse);
+            categorias.Add(ativoTrueDefault);
 
             return categorias.Where(r => r.Nome == nome).FirstOrDefault();
         }
