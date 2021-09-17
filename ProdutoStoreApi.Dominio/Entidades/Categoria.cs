@@ -21,6 +21,16 @@ namespace ProdutoStoreApi.Dominio.Entidades
         public string Descricao { get; private set; }
         public bool Ativo { get; private set; }
 
+        public void SetarNome(string nome)
+        {
+            Nome = nome;
+        }
+
+        public void SetarDescricao(string descricao)
+        {
+            Descricao = descricao;
+        }
+
         public void SetarAtivo(bool valor)
         {
             Ativo = valor;

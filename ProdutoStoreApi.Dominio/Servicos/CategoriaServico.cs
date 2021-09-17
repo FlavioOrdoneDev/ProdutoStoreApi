@@ -28,6 +28,11 @@ namespace ProdutoStoreApi.Dominio.Servicos
 
         public Categoria Atualizar(Categoria categoria)
         {
+            if (!categoria.IsValid())
+            {
+                return categoria;
+            }
+
             return _categoriaRepositorio.Atualizar(categoria);
         }
 

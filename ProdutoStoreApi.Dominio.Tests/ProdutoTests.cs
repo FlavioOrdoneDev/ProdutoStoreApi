@@ -15,6 +15,10 @@ namespace ProdutoStoreApi.Dominio.Tests
         [TestMethod]
         public void ProdutoNome_DeveAceitarNomeDaCategoriaComMaisDeTresCaracteresEMenosDeCem()
         {
+            var produto = ObterProduto("Pen drive");
+
+            var teste = produto;
+
         }
 
         #endregion
@@ -37,7 +41,6 @@ namespace ProdutoStoreApi.Dominio.Tests
             var moda = new Categoria("Moda", "Artigos para vestuário em geral");
             var livros = new Categoria("Livros", "Livros");
             var alimentos = new Categoria("Alimentos", "Alimentos em geral");
-            
 
             categorias.Add(eletronico);
             categorias.Add(informatica);

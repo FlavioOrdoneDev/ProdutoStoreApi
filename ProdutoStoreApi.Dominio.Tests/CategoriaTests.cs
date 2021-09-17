@@ -11,10 +11,11 @@ namespace ProdutoStoreApi.Dominio.Tests
     [TestClass]
     public class CategoriaTests
     {
-        #region CategoriaNome
+        #region Adicionar
 
+        
         [TestMethod]
-        public void CategoriaNome_DeveAceitarNomeDaCategoriaComMaisDeTresCaracteresEMenosDeCem()
+        public void CategoriaAdicionar_DeveAceitarNomeDaCategoriaComMaisDeTresCaracteresEMenosDeCem()
         {
             var categoria = ObterCategoria("Eletrônico");
 
@@ -29,7 +30,7 @@ namespace ProdutoStoreApi.Dominio.Tests
         }
 
         [TestMethod]
-        public void CategoriaNome_NaoDeveAceitarNomeDaCategoriaNulo()
+        public void CategoriaAdicionar_NaoDeveAceitarNomeDaCategoriaNulo()
         {
             var categoriaNomeNulo = ObterCategoria(null);
 
@@ -45,7 +46,7 @@ namespace ProdutoStoreApi.Dominio.Tests
         }
 
         [TestMethod]
-        public void CategoriaNome_NaoDeveAceitarNomeDaCategoriaComMenosDeTresCaracteres()
+        public void CategoriaAdicionar_NaoDeveAceitarNomeDaCategoriaComMenosDeTresCaracteres()
         {
             var categoriaDoisCaracteres = ObterCategoria("aa");
 
@@ -61,7 +62,7 @@ namespace ProdutoStoreApi.Dominio.Tests
         }
 
         [TestMethod]
-        public void CategoriaNome_NaoDeveAceitarNomeDaCategoriaComMaisDeCemCaracteres()
+        public void CategoriaAdicionar_NaoDeveAceitarNomeDaCategoriaComMaisDeCemCaracteres()
         {
             var categoriaMaisDeCemCaracteres = ObterCategoria("NomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteres");
 
@@ -77,14 +78,8 @@ namespace ProdutoStoreApi.Dominio.Tests
         }
 
 
-        #endregion
-
-
-
-        #region CategoriaDescricao
-
         [TestMethod]
-        public void CategoriaDescricao_DeveAceitarNomeDaCategoriaComMaisDeTresCaracteresEMenosDeDuzentosECinquenta()
+        public void CategoriaAdicionar_DeveAceitarNomeDaCategoriaComMaisDeTresCaracteresEMenosDeDuzentosECinquenta()
         {
             var categoria = ObterCategoria("Eletrônico");
 
@@ -99,7 +94,7 @@ namespace ProdutoStoreApi.Dominio.Tests
         }
 
         [TestMethod]
-        public void CategoriaDescricao_NaoDeveAceitarDescricaoDaCategoriaNula()
+        public void CategoriaAdicionar_NaoDeveAceitarDescricaoDaCategoriaNula()
         {
             var categoriaDescricaoNula = ObterCategoria("DescricaoNula");
 
@@ -115,7 +110,7 @@ namespace ProdutoStoreApi.Dominio.Tests
         }
 
         [TestMethod]
-        public void CategoriaDescricao_NaoDeveAceitarDescricaoDaCategoriaComMenosDeTresCaracteres()
+        public void CategoriaAdicionar_NaoDeveAceitarDescricaoDaCategoriaComMenosDeTresCaracteres()
         {
             var categoriaDescricaoDoisCaracteres = ObterCategoria("CategoriaDescricaoDoisCaracteres");
 
@@ -131,7 +126,7 @@ namespace ProdutoStoreApi.Dominio.Tests
         }
 
         [TestMethod]
-        public void CategoriaDescricao_NaoDeveAceitarDescricaoDaCategoriaComMaisDeDuzentosECinquentaCaracteres()
+        public void CategoriaAdicionar_NaoDeveAceitarDescricaoDaCategoriaComMaisDeDuzentosECinquentaCaracteres()
         {
             var descricaoCategoriaMuitoGrande = ObterCategoria("DescricaoCategoriaMuitoGrande");
 
@@ -147,13 +142,8 @@ namespace ProdutoStoreApi.Dominio.Tests
         }
 
 
-        #endregion
-
-
-        #region CategoriaAtivo
-
         [TestMethod]
-        public void CategoriaAtivo_AoCriarUmaCategoriaNovaOCampoAtivoDeveSerTrueComoDefault()
+        public void CategoriaAdicionar_AoCriarUmaCategoriaNovaOCampoAtivoDeveSerTrueComoDefault()
         {
             var ativoTrueDefault = ObterCategoria("AtivoTrueDefault");
 
@@ -168,7 +158,7 @@ namespace ProdutoStoreApi.Dominio.Tests
         }
 
         [TestMethod]
-        public void CategoriaAtivo_DeveAceitarCampoAtivoDaCategoriaIgualATrue()
+        public void CategoriaAdicionar_DeveAceitarCampoAtivoDaCategoriaIgualATrue()
         {
             var categoria = ObterCategoria("Eletrônico");
 
@@ -184,7 +174,7 @@ namespace ProdutoStoreApi.Dominio.Tests
         }
 
         [TestMethod]
-        public void CategoriaAtivo_DeveAceitarCampoAtivoDaCategoriaIgualAFalse()
+        public void CategoriaAdicionar_DeveAceitarCampoAtivoDaCategoriaIgualAFalse()
         {
             var ativoFalse = ObterCategoria("AtivoFalse");
 
@@ -197,14 +187,145 @@ namespace ProdutoStoreApi.Dominio.Tests
             resultado.SetarAtivo(false);
 
             Assert.IsFalse(resultado.Ativo);
-        }   
+        }
 
+
+        #endregion        
+
+
+        #region Atualizar
+
+        [TestMethod]
+        public void CategoriaAtualizar_DeveAceitarAtualizarNomeDaCategoriaComMaisDeTresCaracteresEMenosDeCem()
+        {
+            var categoria = ObterCategoria("Eletrônico");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Atualizar(categoria)).Returns(categoria);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            categoria.SetarNome("Eletrônico Novo");
+
+            var resultado = categoriaServico.Atualizar(categoria);
+
+            Assert.IsTrue(resultado.IsValid());
+        }
+
+        [TestMethod]
+        public void CategoriaAtualizar_NaoDeveAceitarAtualizarNomeDaCategoriaNulo()
+        {
+            var categoriaNomeNulo = ObterCategoria(null);
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Atualizar(categoriaNomeNulo)).Returns(categoriaNomeNulo);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Atualizar(categoriaNomeNulo);
+
+            Assert.IsFalse(resultado.IsValid());
+            Assert.AreEqual("NotNullValidator", resultado.ResultadoValidacao.Errors[0].ErrorCode);
+        }
+
+        [TestMethod]
+        public void CategoriaAtualizar_NaoDeveAceitarAtualizarNomeDaCategoriaComMenosDeTresCaracteres()
+        {
+            var categoriaDoisCaracteres = ObterCategoria("aa");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Atualizar(categoriaDoisCaracteres)).Returns(categoriaDoisCaracteres);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Atualizar(categoriaDoisCaracteres);
+
+            Assert.IsFalse(resultado.IsValid());
+            Assert.AreEqual("MinimumLengthValidator", resultado.ResultadoValidacao.Errors[0].ErrorCode);
+        }
+
+        [TestMethod]
+        public void CategoriaAtualizar_NaoDeveAceitarAtualizarNomeDaCategoriaComMaisDeCemCaracteres()
+        {
+            var categoriaMaisDeCemCaracteres = ObterCategoria("NomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteres");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Atualizar(categoriaMaisDeCemCaracteres)).Returns(categoriaMaisDeCemCaracteres);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Atualizar(categoriaMaisDeCemCaracteres);
+
+            Assert.IsFalse(resultado.IsValid());
+            Assert.AreEqual("MaximumLengthValidator", resultado.ResultadoValidacao.Errors[0].ErrorCode);
+        }
+        
+
+        [TestMethod]
+        public void CategoriaAtualizar_DeveAceitarAtualizarNomeDaCategoriaComMaisDeTresCaracteresEMenosDeDuzentosECinquenta()
+        {
+            var categoria = ObterCategoria("Eletrônico");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Atualizar(categoria)).Returns(categoria);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Atualizar(categoria);
+
+            Assert.IsTrue(resultado.IsValid());
+        }
+
+        [TestMethod]
+        public void CategoriaAtualizar_NaoDeveAceitarAtualizarDescricaoDaCategoriaNula()
+        {
+            var categoriaDescricaoNula = ObterCategoria("DescricaoNula");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Atualizar(categoriaDescricaoNula)).Returns(categoriaDescricaoNula);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Atualizar(categoriaDescricaoNula);
+
+            Assert.IsFalse(resultado.IsValid());
+            Assert.AreEqual("NotNullValidator", resultado.ResultadoValidacao.Errors[0].ErrorCode);
+        }
+
+        [TestMethod]
+        public void CategoriaAtualizar_NaoDeveAceitarAtualizarDescricaoDaCategoriaComMenosDeTresCaracteres()
+        {
+            var categoriaDescricaoDoisCaracteres = ObterCategoria("CategoriaDescricaoDoisCaracteres");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Atualizar(categoriaDescricaoDoisCaracteres)).Returns(categoriaDescricaoDoisCaracteres);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Atualizar(categoriaDescricaoDoisCaracteres);
+
+            Assert.IsFalse(resultado.IsValid());
+            Assert.AreEqual("MinimumLengthValidator", resultado.ResultadoValidacao.Errors[0].ErrorCode);
+        }
+
+        [TestMethod]
+        public void CategoriaAtualizar_NaoDeveAceitarAtualizarDescricaoDaCategoriaComMaisDeDuzentosECinquentaCaracteres()
+        {
+            var descricaoCategoriaMuitoGrande = ObterCategoria("DescricaoCategoriaMuitoGrande");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Atualizar(descricaoCategoriaMuitoGrande)).Returns(descricaoCategoriaMuitoGrande);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Atualizar(descricaoCategoriaMuitoGrande);
+
+            Assert.IsFalse(resultado.IsValid());
+            Assert.AreEqual("MaximumLengthValidator", resultado.ResultadoValidacao.Errors[0].ErrorCode);
+        }  
+        
 
         #endregion
-
-
-
-
 
 
         #region Configuracoes
