@@ -10,16 +10,21 @@ namespace ProdutoStoreApi.Dominio.Entidades
     public class Categoria
     {
         public Categoria(){}
-        public Categoria(string nome, string descricao, bool ativo = true){
+        public Categoria(string nome, string descricao){
             Nome = nome;
             Descricao = descricao;
-            Ativo = ativo;
+            Ativo = true;
         }
 
         public int Id { get; private set; }
         public string Nome { get; private set; }
         public string Descricao { get; private set; }
         public bool Ativo { get; private set; }
+
+        public void SetarAtivo(bool valor)
+        {
+            Ativo = valor;
+        }
 
         public bool IsValid()
         {

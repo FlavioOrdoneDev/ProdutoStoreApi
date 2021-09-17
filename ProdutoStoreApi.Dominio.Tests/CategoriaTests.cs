@@ -153,6 +153,21 @@ namespace ProdutoStoreApi.Dominio.Tests
         #region CategoriaAtivo
 
         [TestMethod]
+        public void CategoriaAtivo_AoCriarUmaCategoriaNovaOCampoAtivoDeveSerTrueComoDefault()
+        {
+            var ativoTrueDefault = ObterCategoria("AtivoTrueDefault");
+
+            var repositorio = new Mock<ICategoriaRepositorio>();
+            repositorio.Setup(s => s.Adicionar(ativoTrueDefault)).Returns(ativoTrueDefault);
+
+            var categoriaServico = new CategoriaServico(repositorio.Object);
+
+            var resultado = categoriaServico.Adicionar(ativoTrueDefault);
+
+            Assert.IsTrue(resultado.Ativo);
+        }
+
+        [TestMethod]
         public void CategoriaAtivo_DeveAceitarCampoAtivoDaCategoriaIgualATrue()
         {
             var categoria = ObterCategoria("Eletrônico");
@@ -163,6 +178,7 @@ namespace ProdutoStoreApi.Dominio.Tests
             var categoriaServico = new CategoriaServico(repositorio.Object);
 
             var resultado = categoriaServico.Adicionar(categoria);
+            resultado.SetarAtivo(true);
 
             Assert.IsTrue(resultado.Ativo);
         }
@@ -178,24 +194,10 @@ namespace ProdutoStoreApi.Dominio.Tests
             var categoriaServico = new CategoriaServico(repositorio.Object);
 
             var resultado = categoriaServico.Adicionar(ativoFalse);
+            resultado.SetarAtivo(false);
 
             Assert.IsFalse(resultado.Ativo);
-        }
-
-        [TestMethod]
-        public void CategoriaAtivo_DeveAceitarCampoAtivoTrueComoDefault()
-        {
-            var ativoTrueDefault = ObterCategoria("AtivoTrueDefault");
-
-            var repositorio = new Mock<ICategoriaRepositorio>();
-            repositorio.Setup(s => s.Adicionar(ativoTrueDefault)).Returns(ativoTrueDefault);
-
-            var categoriaServico = new CategoriaServico(repositorio.Object);
-
-            var resultado = categoriaServico.Adicionar(ativoTrueDefault);
-
-            Assert.IsTrue(resultado.Ativo);
-        }
+        }   
 
 
         #endregion
@@ -212,7 +214,8 @@ namespace ProdutoStoreApi.Dominio.Tests
         {
             var categorias = new List<Categoria>();
 
-            var eletronico = new Categoria("Eletrônico", "Eletrodomésticos");                       
+            var eletronico = new Categoria("Eletrônico", "Eletrodomésticos");
+            eletronico.SetarAtivo(false);
             var nomeNulo = new Categoria(null, "Categoria com nome nulo");
             var categoriaDoisCaracteres = new Categoria("aa", "Categoria com nome menor que três caracteres");
             var categoriaMaisDeCemCaracteres = new Categoria("NomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteresNomeCategoriaComMaisDeCEmCaracteres", "Categoria com mais de cem caracteres");            
