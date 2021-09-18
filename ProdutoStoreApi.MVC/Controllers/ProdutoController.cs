@@ -85,6 +85,36 @@ namespace ProdutoStoreApi.MVC.Controllers
 
             return View("Index", produtoViewModel);
         }
+
+        public ActionResult Deletar(int id)
+        {
+            
+            var produto = _produtoAppServico.ObterPorId(id);
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            return View(produto);
+        }
+
+        [HttpPost]
+        public ActionResult Deletar(Produto produto)
+        {
+            if (ModelState.IsValid)
+            {
+                _produtoAppServico.Remover(produto);
+            }
+            else
+            {
+                RedirectToAction("Index");
+            }
+
+            var produtos = _produtoAppServico.ObterTodos();
+            var produtoViewModel = new ProdutoViewModel(produtos);
+
+            return View("Index", produtoViewModel);
+        }
     }
 }
 
