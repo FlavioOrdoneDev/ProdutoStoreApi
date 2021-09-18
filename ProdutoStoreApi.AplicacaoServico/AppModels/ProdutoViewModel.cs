@@ -6,7 +6,13 @@ using System.Text;
 namespace ProdutoStoreApi.AplicacaoServico.AppModels
 {
     public class ProdutoViewModel
-    {        
+    {
+        public ProdutoViewModel(IEnumerable<ProdutoViewModel> produtos)
+        {
+            Produtos = produtos;
+        }
+
+
         public ProdutoViewModel(Produto produto)
         {
             Id = produto.Id;
@@ -24,5 +30,6 @@ namespace ProdutoStoreApi.AplicacaoServico.AppModels
         public bool Perecivel { get; private set; }
         public int CategoriaId { get; private set; }
         public Categoria Categoria { get; private set; }
+        public IEnumerable<ProdutoViewModel> Produtos { get; set; }
     }
 }

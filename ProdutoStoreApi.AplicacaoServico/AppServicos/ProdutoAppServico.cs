@@ -18,6 +18,8 @@ namespace ProdutoStoreApi.AplicacaoServico.AppServicos
 
         public ProdutoViewModel Adicionar(Produto produto)
         {
+            
+
             var resultado = _produtoServico.Adicionar(produto);
 
             return new ProdutoViewModel(resultado);
