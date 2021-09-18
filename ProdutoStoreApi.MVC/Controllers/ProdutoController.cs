@@ -56,6 +56,9 @@ namespace ProdutoStoreApi.MVC.Controllers
 
         public ActionResult Editar(int id)
         {
+            var categorias = _categoriaAppServico.ObterTodas();
+            ViewBag.IdCategoria = new SelectList(categorias, "IdCategoria", "Nome", "");
+
             var produto = _produtoAppServico.ObterPorId(id);
             if (produto == null)
             {
@@ -77,13 +80,10 @@ namespace ProdutoStoreApi.MVC.Controllers
                 RedirectToAction("Index");
             }
 
-            return View("ndex");
-        }
+            var produtos = _produtoAppServico.ObterTodos();
+            var produtoViewModel = new ProdutoViewModel(produtos);
 
-        public ActionResult Detalhes(int id)
-        {
-            var produto = _produtoAppServico.ObterPorId(id);
-            return View(produto);
+            return View("Index", produtoViewModel);
         }
     }
 }
