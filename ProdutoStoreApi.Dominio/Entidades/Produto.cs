@@ -21,13 +21,13 @@ namespace ProdutoStoreApi.Dominio.Entidades
             CategoriaId = categoriaId;
         }
 
-        public int Id { get; private set; }
-        public string Nome { get; private set; }
-        public string Descricao { get; private set; }
-        public bool Ativo { get; private set; }
-        public bool Perecivel { get; private set; }
-        public int CategoriaId { get; private set; }
-        public Categoria Categoria { get; private set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
+        public bool Ativo { get; set; }
+        public bool Perecivel { get; set; }
+        public int CategoriaId { get; set; }
+        public Categoria Categoria { get; set; }
 
         public void SetarAtivo(bool valor)
         {

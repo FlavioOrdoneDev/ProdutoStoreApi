@@ -18,7 +18,7 @@ namespace ProdutoStoreApi.Dominio.Validacoes
             RuleFor(produto => produto.Descricao).MinimumLength(3).WithMessage("A descrição não pode ter menos de 3 caracteres.");
             RuleFor(produto => produto.Descricao).MaximumLength(250).WithMessage("A descrição não pode ter mais que 250 caracteres.");
 
-            RuleFor(produto => produto.CategoriaId).NotNull().WithMessage("A categoria é obrigatória");
+            RuleFor(produto => produto.CategoriaId).NotEmpty().WithMessage("A categoria é obrigatória");
         }
     }
 }

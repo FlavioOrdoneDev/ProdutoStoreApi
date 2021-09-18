@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProdutoStoreApi.API.Controllers
 {
-    public class CategoriaController : ControllerBase
+    public class CategoriaController : Controller
     {
         private readonly ICategoriaAppServico _categoriaAppServico;
 
@@ -36,7 +36,7 @@ namespace ProdutoStoreApi.API.Controllers
 
         [Route("categoria")]
         [HttpPost]
-        public ActionResult Post([FromBody]Categoria categoria)
+        public ActionResult Post([FromBody] Categoria categoria)
         {            
            _categoriaAppServico.Adicionar(categoria);
 
