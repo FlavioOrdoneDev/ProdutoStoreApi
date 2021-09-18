@@ -7,6 +7,11 @@ namespace ProdutoStoreApi.AplicacaoServico.AppModels
 {
     public class ProdutoViewModel
     {
+        public ProdutoViewModel()
+        {
+
+        }
+
         public ProdutoViewModel(Produto produto)
         {
             Id = produto.Id;

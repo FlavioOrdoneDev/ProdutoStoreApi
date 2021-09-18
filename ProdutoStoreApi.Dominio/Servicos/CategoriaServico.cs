@@ -23,7 +23,9 @@ namespace ProdutoStoreApi.Dominio.Servicos
                 return categoria;
             }
 
-            return _categoriaRepositorio.Adicionar(categoria);
+            var obj = new Categoria(categoria.Nome, categoria.Descricao);
+
+            return _categoriaRepositorio.Adicionar(obj);
         }
 
         public Categoria Atualizar(Categoria categoria)
