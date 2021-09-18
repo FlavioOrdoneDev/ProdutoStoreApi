@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{73AB6697-C265-4B9D-B060-DE9FE59D0E96}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Dominio", "4 - Dominio", "{73AB6697-C265-4B9D-B060-DE9FE59D0E96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutoStoreApi.Dominio", "ProdutoStoreApi.Dominio\ProdutoStoreApi.Dominio.csproj", "{AC38A6D0-9E4F-4530-BA64-5C92503A3A6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdutoStoreApi.Dominio", "ProdutoStoreApi.Dominio\ProdutoStoreApi.Dominio.csproj", "{AC38A6D0-9E4F-4530-BA64-5C92503A3A6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutoStoreApi.Dominio.Tests", "ProdutoStoreApi.Dominio.Tests\ProdutoStoreApi.Dominio.Tests.csproj", "{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdutoStoreApi.Dominio.Tests", "ProdutoStoreApi.Dominio.Tests\ProdutoStoreApi.Dominio.Tests.csproj", "{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Infraestrutura", "5 - Infraestrutura", "{A28F8987-0945-4BF9-9F91-D9B16B9E0AA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutoStoreApi.Dados", "ProdutoStoreApi.Dados\ProdutoStoreApi.Dados.csproj", "{C2EBFA06-227F-4401-B342-30C7BEA450FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +27,10 @@ Global
 		{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2EBFA06-227F-4401-B342-30C7BEA450FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2EBFA06-227F-4401-B342-30C7BEA450FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2EBFA06-227F-4401-B342-30C7BEA450FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2EBFA06-227F-4401-B342-30C7BEA450FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{AC38A6D0-9E4F-4530-BA64-5C92503A3A6B} = {73AB6697-C265-4B9D-B060-DE9FE59D0E96}
 		{ADDEB4A6-3F56-47E1-AAB1-ADF08EAADE00} = {73AB6697-C265-4B9D-B060-DE9FE59D0E96}
+		{C2EBFA06-227F-4401-B342-30C7BEA450FF} = {A28F8987-0945-4BF9-9F91-D9B16B9E0AA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E5B0E29-E6AE-4C91-8680-6BE11F7919A3}

@@ -20,6 +20,7 @@ namespace ProdutoStoreApi.Dominio.Entidades
         public string Nome { get; private set; }
         public string Descricao { get; private set; }
         public bool Ativo { get; private set; }
+        public ICollection<Produto> Produtos { get; set; }
 
         public void SetarNome(string nome)
         {
