@@ -8,6 +8,15 @@
 
 <h4>Produto</h4>
 <hr />
+@if (Model.ResultadoValidacao != null)
+{
+    <div class="div-erro">
+        @foreach (var item in Model.ResultadoValidacao.Errors)
+        {
+            <p class="error-message">@item</p>
+        }
+    </div>
+}
 <div class="row">
     <div class="col-md-6">
         <form asp-action="Editar">
@@ -16,12 +25,10 @@
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" class="form-control" />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -35,15 +42,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoriaId" class="control-label">Categorias</label>
-                <div class="form-group" >
+                <div class="form-group">
                     <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.IdCategoria">
                         <option value="">Selecione uma Categoria</option>
-                    </select>
-                    <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                    </select>                    
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </form>
     </div>

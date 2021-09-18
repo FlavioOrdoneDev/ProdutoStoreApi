@@ -1,4 +1,5 @@
-﻿using ProdutoStoreApi.Dominio.Entidades;
+﻿using FluentValidation.Results;
+using ProdutoStoreApi.Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,5 +32,6 @@ namespace ProdutoStoreApi.AplicacaoServico.AppModels
         public int CategoriaId { get; private set; }
         public Categoria Categoria { get; private set; }
         public IEnumerable<ProdutoViewModel> Produtos { get; set; }
+        public ValidationResult ResultadoValidacao { get; set; }
     }
 }

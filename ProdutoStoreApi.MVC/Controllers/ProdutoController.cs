@@ -39,10 +39,16 @@ namespace ProdutoStoreApi.MVC.Controllers
             var categorias = _categoriaAppServico.ObterTodas();
             ViewBag.IdCategoria = new SelectList(categorias, "IdCategoria", "Nome", "");           
 
-            _produtoAppServico.Adicionar(produto);
+            var produtoViewModel = _produtoAppServico.Adicionar(produto);
+
+            if (produto.ResultadoValidacao.Errors.Count > 0)
+            {
+                produtoViewModel.ResultadoValidacao = produto.ResultadoValidacao;
+            }
 
             var produtos = _produtoAppServico.ObterTodos();
-            var produtoViewModel = new ProdutoViewModel(produtos);            
+
+            produtoViewModel.Produtos = produtos;
 
             return View("Index", produtoViewModel);
         }
@@ -71,17 +77,19 @@ namespace ProdutoStoreApi.MVC.Controllers
         [HttpPost]
         public ActionResult Editar(Produto produto)
         {
-            if (ModelState.IsValid)
+            var produtoViewModel = _produtoAppServico.Atualizar(produto);
+
+            if (produto.ResultadoValidacao.Errors.Count > 0)
             {
-                _produtoAppServico.Atualizar(produto);
-            }
-            else
-            {
-                RedirectToAction("Index");
+                produtoViewModel.ResultadoValidacao = produto.ResultadoValidacao;
+                var categorias = _categoriaAppServico.ObterTodas();
+                ViewBag.IdCategoria = new SelectList(categorias, "IdCategoria", "Nome", "");
+                return View("Editar", produtoViewModel);
             }
 
             var produtos = _produtoAppServico.ObterTodos();
-            var produtoViewModel = new ProdutoViewModel(produtos);
+
+            produtoViewModel.Produtos = produtos;
 
             return View("Index", produtoViewModel);
         }
