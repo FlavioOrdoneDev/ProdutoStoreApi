@@ -77,22 +77,6 @@ namespace ProdutoStoreApi.Dominio.Tests
             Assert.AreEqual("MaximumLengthValidator", resultado.ResultadoValidacao.Errors[0].ErrorCode);
         }
 
-
-        [TestMethod]
-        public void CategoriaAdicionar_DeveAceitarNomeDaCategoriaComMaisDeTresCaracteresEMenosDeDuzentosECinquenta()
-        {
-            var categoria = ObterCategoria("Eletrônico");
-
-            var repositorio = new Mock<ICategoriaRepositorio>();
-            repositorio.Setup(s => s.Adicionar(categoria)).Returns(categoria);
-
-            var categoriaServico = new CategoriaServico(repositorio.Object);
-
-            var resultado = categoriaServico.Adicionar(categoria);
-
-            Assert.IsTrue(resultado.IsValid());
-        }
-
         [TestMethod]
         public void CategoriaAdicionar_NaoDeveAceitarDescricaoDaCategoriaNula()
         {
@@ -258,22 +242,6 @@ namespace ProdutoStoreApi.Dominio.Tests
 
             Assert.IsFalse(resultado.IsValid());
             Assert.AreEqual("MaximumLengthValidator", resultado.ResultadoValidacao.Errors[0].ErrorCode);
-        }
-        
-
-        [TestMethod]
-        public void CategoriaAtualizar_DeveAceitarAtualizarNomeDaCategoriaComMaisDeTresCaracteresEMenosDeDuzentosECinquenta()
-        {
-            var categoria = ObterCategoria("Eletrônico");
-
-            var repositorio = new Mock<ICategoriaRepositorio>();
-            repositorio.Setup(s => s.Atualizar(categoria)).Returns(categoria);
-
-            var categoriaServico = new CategoriaServico(repositorio.Object);
-
-            var resultado = categoriaServico.Atualizar(categoria);
-
-            Assert.IsTrue(resultado.IsValid());
         }
 
         [TestMethod]

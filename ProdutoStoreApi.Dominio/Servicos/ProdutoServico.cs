@@ -18,11 +18,21 @@ namespace ProdutoStoreApi.Dominio.Servicos
 
         public Produto Adicionar(Produto produto)
         {
+            if (!produto.IsValid())
+            {
+                return produto;
+            }
+
             return _produtoRepositorio.Adicionar(produto);
         }
 
         public Produto Atualizar(Produto produto)
         {
+            if (!produto.IsValid())
+            {
+                return produto;
+            }
+
             return _produtoRepositorio.Atualizar(produto);
         }
 
