@@ -21,7 +21,6 @@ namespace ProdutoStoreApi.Dominio.Entidades
             CategoriaId = categoriaId;
         }
 
-
         public int Id { get; private set; }
         public string Nome { get; private set; }
         public string Descricao { get; private set; }
