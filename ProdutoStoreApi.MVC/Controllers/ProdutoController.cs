@@ -24,11 +24,11 @@ namespace ProdutoStoreApi.MVC.Controllers
 
         public ActionResult Index()
         {
-            var categorias = _categoriaAppServico.ObterTodas();
-            ViewBag.IdCategoria = new SelectList(categorias, "IdCategoria", "Nome", "");
+            ViewBag.IdCategoria = new SelectList(_categoriaAppServico.ObterTodas(), "IdCategoria", "Nome", "");
 
-            var produtos = _produtoAppServico.ObterTodos();
-            var produto = new ProdutoViewModel(produtos);
+            var produto = new ProdutoViewModel();
+            produto.Produtos = _produtoAppServico.ObterTodos();
+            ModelState.Clear();
 
             return View(produto);
         }
@@ -36,8 +36,7 @@ namespace ProdutoStoreApi.MVC.Controllers
         [HttpPost]
         public ActionResult Adicionar(Produto produto)
         {
-            var categorias = _categoriaAppServico.ObterTodas();
-            ViewBag.IdCategoria = new SelectList(categorias, "IdCategoria", "Nome", "");           
+            ViewBag.IdCategoria = new SelectList(_categoriaAppServico.ObterTodas(), "IdCategoria", "Nome", "");
 
             var produtoViewModel = _produtoAppServico.Adicionar(produto);
 
@@ -46,11 +45,9 @@ namespace ProdutoStoreApi.MVC.Controllers
                 produtoViewModel.ResultadoValidacao = produto.ResultadoValidacao;
             }
 
-            var produtos = _produtoAppServico.ObterTodos();
+            produtoViewModel.Produtos = _produtoAppServico.ObterTodos();
 
-            produtoViewModel.Produtos = produtos;
-
-            return View("Index", produtoViewModel);
+            return RedirectToAction("Index");
         }
 
         public ActionResult buscarProdutos()
@@ -62,8 +59,7 @@ namespace ProdutoStoreApi.MVC.Controllers
 
         public ActionResult Editar(int id)
         {
-            var categorias = _categoriaAppServico.ObterTodas();
-            ViewBag.IdCategoria = new SelectList(categorias, "IdCategoria", "Nome", "");
+            ViewBag.IdCategoria = new SelectList(_categoriaAppServico.ObterTodas(), "IdCategoria", "Nome", "");
 
             var produto = _produtoAppServico.ObterPorId(id);
             if (produto == null)
@@ -77,26 +73,24 @@ namespace ProdutoStoreApi.MVC.Controllers
         [HttpPost]
         public ActionResult Editar(Produto produto)
         {
-            var produtoViewModel = _produtoAppServico.Atualizar(produto);
+            var produtoViewModel = new ProdutoViewModel();
+            _produtoAppServico.Atualizar(produto);
 
             if (produto.ResultadoValidacao.Errors.Count > 0)
             {
                 produtoViewModel.ResultadoValidacao = produto.ResultadoValidacao;
-                var categorias = _categoriaAppServico.ObterTodas();
-                ViewBag.IdCategoria = new SelectList(categorias, "IdCategoria", "Nome", "");
+                ViewBag.IdCategoria = new SelectList(_categoriaAppServico.ObterTodas(), "IdCategoria", "Nome", "");
+
                 return View("Editar", produtoViewModel);
             }
 
-            var produtos = _produtoAppServico.ObterTodos();
+            produtoViewModel.Produtos = _produtoAppServico.ObterTodos();
 
-            produtoViewModel.Produtos = produtos;
-
-            return View("Index", produtoViewModel);
+            return RedirectToAction("Index");
         }
 
         public ActionResult Deletar(int id)
-        {
-            
+        {            
             var produto = _produtoAppServico.ObterPorId(id);
             if (produto == null)
             {
@@ -110,18 +104,14 @@ namespace ProdutoStoreApi.MVC.Controllers
         public ActionResult Deletar(Produto produto)
         {
             if (ModelState.IsValid)
-            {
                 _produtoAppServico.Remover(produto);
-            }
             else
-            {
                 RedirectToAction("Index");
-            }
 
-            var produtos = _produtoAppServico.ObterTodos();
-            var produtoViewModel = new ProdutoViewModel(produtos);
+            var produtoViewModel = new ProdutoViewModel();
+            produtoViewModel.Produtos = _produtoAppServico.ObterTodos();
 
-            return View("Index", produtoViewModel);
+            return RedirectToAction("Index");
         }
     }
 }

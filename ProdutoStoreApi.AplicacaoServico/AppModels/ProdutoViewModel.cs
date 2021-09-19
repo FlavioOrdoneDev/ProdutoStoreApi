@@ -8,11 +8,10 @@ namespace ProdutoStoreApi.AplicacaoServico.AppModels
 {
     public class ProdutoViewModel
     {
-        public ProdutoViewModel(IEnumerable<ProdutoViewModel> produtos)
+        public ProdutoViewModel()
         {
-            Produtos = produtos;
+            
         }
-
 
         public ProdutoViewModel(Produto produto)
         {
