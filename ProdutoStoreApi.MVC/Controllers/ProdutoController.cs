@@ -23,7 +23,6 @@ namespace ProdutoStoreApi.MVC.Controllers
 
             var produto = new ProdutoViewModel();
             produto.Produtos = _produtoAppServico.ObterTodos();
-            ModelState.Clear();
 
             return View(produto);
         }
@@ -34,13 +33,15 @@ namespace ProdutoStoreApi.MVC.Controllers
             ViewBag.IdCategoria = new SelectList(_categoriaAppServico.ObterTodas(), "IdCategoria", "Nome", "");
 
             var produtoViewModel = _produtoAppServico.Adicionar(produto);
+                produtoViewModel.Produtos = _produtoAppServico.ObterTodos();
 
             if (produto.ResultadoValidacao.Errors.Count > 0)
             {
                 produtoViewModel.ResultadoValidacao = produto.ResultadoValidacao;
+
+                return View("Index", produtoViewModel);
             }
 
-            produtoViewModel.Produtos = _produtoAppServico.ObterTodos();
 
             return RedirectToAction("Index");
         }
