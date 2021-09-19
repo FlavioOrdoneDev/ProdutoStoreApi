@@ -21,6 +21,7 @@ namespace ProdutoStoreApi.AplicacaoServico.AppModels
             Ativo = produto.Ativo;
             Perecivel = produto.Perecivel;
             CategoriaId = produto.CategoriaId;
+            Categoria = produto.Categoria;
         }
 
         public int Id { get; private set; }

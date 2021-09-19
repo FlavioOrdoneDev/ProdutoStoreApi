@@ -44,7 +44,7 @@ namespace ProdutoStoreApi.Dados.Repositorios
 
         public IEnumerable<Produto> ObterTodos()
         {
-            return _contexto.Produtos;
+            return _contexto.Produtos.Include(c => c.Categoria).AsNoTracking();
         }
 
         public Produto Remover(Produto obj)

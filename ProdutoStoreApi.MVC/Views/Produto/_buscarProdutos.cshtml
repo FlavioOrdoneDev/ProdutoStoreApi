@@ -3,53 +3,57 @@
 
     <div id="divListaDeProdutos">
 
-        
-        <table class="table">
+        <div class="divTable">
+        <table class="table table-striped">
             <thead>
-                <tr>
+                <tr class="celulas">
                     <th>
-                        @Html.DisplayNameFor(model => model.Nome)
+                        Nome
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Descricao)
+                        Descrição
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Ativo)
+                        Categoria do Produto
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Perecivel)
+                        Ativo
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Categoria)
+                        Perecível
                     </th>
-                    <th></th>
+                    <th>
+                        Ação
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nome)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Descricao)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Ativo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Perecivel)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Categoria.Nome)
-                        </td>
-                        <td>
-                            <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-success">Atualizar</a>
-                            <a asp-action="Deletar" asp-route-id="@item.Id" class="btn btn-danger">Deletar</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                    </td>
+                    <td>
+                        @(item.Ativo ? "Ativo" : "Inativo")
+                    </td>
+                    <td>
+                        @(item.Perecivel ? "Sim" : "Não")
+                    </td>
+
+                    <td>
+                        <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-success">Atualizar</a>
+                        <a asp-action="Deletar" asp-route-id="@item.Id" class="btn btn-danger">Deletar</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
+    </div>
     </div>

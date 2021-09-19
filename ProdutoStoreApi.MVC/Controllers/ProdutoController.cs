@@ -3,16 +3,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ProdutoStoreApi.AplicacaoServico.AppModels;
 using ProdutoStoreApi.AplicacaoServico.AppServicos;
 using ProdutoStoreApi.Dominio.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProdutoStoreApi.MVC.Controllers
 {
     public class ProdutoController : Controller
-    {
-        
+    {        
         private readonly IProdutoAppServico _produtoAppServico;
         private readonly ICategoriaAppServico _categoriaAppServico;
 
