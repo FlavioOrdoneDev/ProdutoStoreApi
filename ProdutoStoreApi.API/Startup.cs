@@ -13,10 +13,6 @@ using ProdutoStoreApi.Dados.Repositorios;
 using ProdutoStoreApi.Dominio.Repositorios;
 using ProdutoStoreApi.Dominio.Servicos;
 using ProdutoStoreApi.Dominio.Servicos.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProdutoStoreApi.API
 {
@@ -33,6 +29,10 @@ namespace ProdutoStoreApi.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             services.AddDbContext<ProdutoStoreContexto>(opcoes => opcoes.UseSqlServer(Configuration.GetConnectionString("Conexao")));
 

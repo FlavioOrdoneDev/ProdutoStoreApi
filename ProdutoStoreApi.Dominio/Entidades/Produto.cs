@@ -12,11 +12,11 @@ namespace ProdutoStoreApi.Dominio.Entidades
 
         public Produto(){}
 
-        public Produto(string nome, string descricao, bool ativo, bool perecivel, int categoriaId)
+        public Produto(string nome, string descricao, bool perecivel, int categoriaId)
         {
             Nome = nome;
             Descricao = descricao;
-            Ativo = ativo;
+            Ativo = true;
             Perecivel = perecivel;
             CategoriaId = categoriaId;
         }

@@ -436,17 +436,17 @@ namespace ProdutoStoreApi.Dominio.Tests
         {
             var produtos = new List<Produto>();
 
-            var penDrive = new Produto("Pen drive", "Pen drive 8gb", true, false, 1);
-            var nomeNulo = new Produto(null, "Produto com nome nulo", false, false, 1);
-            var produtoDoisCaracteres = new Produto("aa", "Produto com nome menor que três caracteres", true, true, 1);
-            var produtoMaisDeCemCaracteres = new Produto("NomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNome", "Produto com mais de cem caracteres", true, true, 1);
+            var penDrive = new Produto("Pen drive", "Pen drive 8gb", false, 1);
+            var nomeNulo = new Produto(null, "Produto com nome nulo", false, 1);
+            var produtoDoisCaracteres = new Produto("aa", "Produto com nome menor que três caracteres", true, 1);
+            var produtoMaisDeCemCaracteres = new Produto("NomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNome", "Produto com mais de cem caracteres", true, 1);
 
-            var descricaoNula = new Produto("DescricaoNula", null, true, true, 1);
-            var produtoDescricaoDoisCaracteres = new Produto("ProdutoDescricaoDoisCaracteres", "aa", true, true, 1);
-            var descricaoProdutoMuitoGrande = new Produto("DescricaoProdutoMuitoGrande", "NomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteres", true, true, 1);
+            var descricaoNula = new Produto("DescricaoNula", null, true, 1);
+            var produtoDescricaoDoisCaracteres = new Produto("ProdutoDescricaoDoisCaracteres", "aa", true, 1);
+            var descricaoProdutoMuitoGrande = new Produto("DescricaoProdutoMuitoGrande", "NomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteresNomeProdutoComMaisDeCEmCaracteres", true, 1);
 
-            var ativoFalse = new Produto("AtivoFalse", "Produto com campo Ativo false", false, false, 1);
-            var ativoTrue = new Produto("AtivoTrue", "Produto com campo Ativo true por default", true, true, 1);
+            var ativoFalse = new Produto("AtivoFalse", "Produto com campo Ativo false", false, 1);
+            var ativoTrue = new Produto("AtivoTrue", "Produto com campo Ativo true por default", true, 1);
 
             produtos.Add(penDrive);
             produtos.Add(nomeNulo);

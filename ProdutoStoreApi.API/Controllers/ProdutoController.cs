@@ -2,10 +2,7 @@
 using ProdutoStoreApi.AplicacaoServico.AppModels;
 using ProdutoStoreApi.AplicacaoServico.AppServicos;
 using ProdutoStoreApi.Dominio.Entidades;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProdutoStoreApi.API.Controllers
 {

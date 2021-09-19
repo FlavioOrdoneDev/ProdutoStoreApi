@@ -23,6 +23,7 @@ namespace ProdutoStoreApi.Dominio.Servicos
                 return produto;
             }
 
+            produto.Ativo = true;
             return _produtoRepositorio.Adicionar(produto);
         }
 
