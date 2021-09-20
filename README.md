@@ -49,7 +49,7 @@ Também foram colocados Testes Unitários na Camada de Domínio.
 	
 	
 ## Executando o projeto
-	$ git clone https://github.com/
+	$ git clone https://github.com/FlavioOrdoneDev/ProdutoStoreApi.git
 
 
 Desenvolvido por Flávio Ordone
